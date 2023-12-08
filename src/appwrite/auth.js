@@ -1,7 +1,7 @@
 import conf from "../conf";
 import { Client, Account, ID } from "appwrite";
 
-class AuthService {
+export class AuthService {
   client = new Client();
   account;
 
@@ -15,7 +15,7 @@ class AuthService {
 
   async createAccout({ email, password, name }) {
     try {
-      const userAccount = await this.account.create(ID, email, password, name);
+      const userAccount = await this.account.create(ID.unique(), email, password, name);
       if (userAccount) {
         // call another method - login after account creation
         this.login(email, password);
@@ -24,7 +24,7 @@ class AuthService {
         return false;
       }
     } catch (error) {
-      console.error(`create-account-error: ${error}`);
+      console.error(`appwrite-create-account-error: ${error}`);
     }
   }
 
@@ -32,7 +32,7 @@ class AuthService {
     try {
       return await this.account.createEmailSesison(email, password);
     } catch (error) {
-      console.error(`login-error: ${error}`);
+      console.error(`appwrite-login-error: ${error}`);
     }
   }
 
@@ -40,7 +40,7 @@ class AuthService {
     try {
       return await this.account.get();
     } catch (error) {
-      console.error(`get-current-user-error: ${error}`);
+      console.error(`appwrite-get-current-user-error: ${error}`);
     }
 
     return null;
@@ -50,7 +50,7 @@ class AuthService {
     try {
       return await this.account.deleteSessions();
     } catch (error) {
-      console.error(`logout-error: ${error}`);
+      console.error(`appwrite-logout-error: ${error}`);
     }
   }
 }
