@@ -24,7 +24,7 @@ export class AuthService {
         return false;
       }
     } catch (error) {
-      console.error(`appwrite-create-account-error: ${error}`);
+      console.log(`appwrite-create-account-error: ${error}`);
     }
   }
 
@@ -32,7 +32,7 @@ export class AuthService {
     try {
       return await this.account.createEmailSesison(email, password);
     } catch (error) {
-      console.error(`appwrite-login-error: ${error}`);
+      console.log(`appwrite-login-error: ${error}`);
     }
   }
 
@@ -40,17 +40,16 @@ export class AuthService {
     try {
       return await this.account.get();
     } catch (error) {
-      console.error(`appwrite-get-current-user-error: ${error}`);
+      console.log(`appwrite-get-current-user-error: ${error}`);
     }
-
-    return null;
+    return null
   }
 
   async logout() {
     try {
       return await this.account.deleteSessions();
     } catch (error) {
-      console.error(`appwrite-logout-error: ${error}`);
+      console.log(`appwrite-logout-error: ${error}`);
     }
   }
 }
