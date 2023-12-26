@@ -6,20 +6,21 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function PostForm({ post = {} }) {
+    console.log("post => ",post);
   const navigate = useNavigate();
   const { register, handleSubmit, watch, setValue, control, getValues } =
     useForm({
       defaultValues: {
-        title: post.title ? post.title : "",
-        slug: post.slug ? post.slug : "",
+        Title: post.Title ? post.Title : "",
+        slug: post.$id ? post.$id : "",
         content: post.content ? post.content : "",
         status: post.status ? post.status : "active",
       },
     });
-  const {userData} = useSelector((state) => state.authReducer.userData);
+  const {userData} = useSelector((state) => state.auth.userData);
 
   const submit = async (data) => {
-    if (post.title) {
+    if (post.Title) {
       const file = data.image[0]
         ? await databaseService.uploadFile(data.image[0])
         : null;
@@ -68,8 +69,8 @@ function PostForm({ post = {} }) {
 
   useEffect(() => {
     const subscription = watch((value, name) => {
-      if (name.name === "title") {
-        setValue("slug", slugTransform(value.title), {
+      if (name.name === "Title") {
+        setValue("slug", slugTransform(value.Title), {
           shouldValidate: true,
         });
       }
@@ -87,7 +88,7 @@ function PostForm({ post = {} }) {
           label="Title :"
           placeholder="Title"
           className="mb-4"
-          {...register("title", { required: true })}
+          {...register("Title", { required: true })}
         />
         <Input
           label="Slug :"
@@ -119,7 +120,7 @@ function PostForm({ post = {} }) {
           <div className="w-full mb-4">
             <img
               src={databaseService.getFilePreview(post.featuredImage)}
-              alt={post.title}
+              alt={post.Title}
               className="rounded-lg"
             />
           </div>
@@ -132,10 +133,10 @@ function PostForm({ post = {} }) {
         />
         <Button
           type="submit"
-          bgColor={post.title ? "bg-green-500" : undefined}
+          bgColor={post.Title ? "bg-green-500" : undefined}
           className="w-full"
         >
-          {post.title ? "Update" : "Submit"}
+          {post.Title ? "Update" : "Submit"}
         </Button>
       </div>
     </form>

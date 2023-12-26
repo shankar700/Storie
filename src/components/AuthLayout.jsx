@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 function ProtectedLayout({children, authentication = true}) {
     const navigate = useNavigate()
     const [loading, setLoading] = useState(true)
-    const authStatus = useSelector((state) => state.authReducer.status)
+    const authStatus = useSelector((state) => state.auth.status)
 
     useEffect(()=>{
         if(authentication && authStatus !== authentication){

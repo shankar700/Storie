@@ -7,7 +7,6 @@ function AllPosts(){
     useEffect(()=>{
         databaseService.ListDocuments([]).then(
             (result)=>{
-                console.log(result);
                 if(result) setPosts(result.documents)
 
             }

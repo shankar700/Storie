@@ -2,19 +2,24 @@ import {useEffect, useState} from 'react'
 import databaseService from '../appwrite/database'
 import { Container, PostCard } from '../components'
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 function Home() {
     const [posts, setPosts] = useState([]);
+    const userData = useSelector((state) => state.auth.userData)
 
     useEffect(()=>{
-        databaseService.ListDocuments([]).then((result) => {
-            if(result){
-                console.log(result);
-                setPosts(result.documents)
-            }
-        })
-    },[])
+        if(userData){
+            databaseService.ListDocuments([]).then((result) => {
+                if(result){
+                    setPosts(result.documents)
+                }
+            })
+        }else{
+            setPosts([])
+        }
+    },[userData])
   
     if(posts.length > 0){
        return <div className='w-full py-8'>

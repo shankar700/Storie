@@ -23,7 +23,7 @@ function Login() {
         navigate("/");
       }
     } catch (error) {
-      console.log(``);
+      console.log(`Lgin-error::${error}`);
       setError(error);
     }
   };
