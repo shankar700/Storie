@@ -13,12 +13,12 @@ export default  function Post() {
     const {userData} = useSelector((state) => state.auth.userData);
 
     const isAuthor = post && userData ? post.userId === userData.$id : false;
-    console.log(userData)
+   
 
     useEffect(() => {
         if (slug) {
             databaseService.getDocument(slug).then((post) => {
-                console.log(post);
+               
                 if (post) setPost(post);
                 else navigate("/");
             });
