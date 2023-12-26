@@ -6,7 +6,8 @@ import {Header, Footer} from "./components"
 import { Outlet } from "react-router-dom";
 
 function App() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  // dispatch to access redux reducer functions 
   const dispatch = useDispatch();
 
   useEffect(() => {
