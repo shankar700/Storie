@@ -34,7 +34,7 @@ function App() {
     </div>
    </div>
   ) : (
-    <p>Loaded</p>
+    <p>Loading</p>
   );
 }
 

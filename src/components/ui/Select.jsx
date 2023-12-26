@@ -1,7 +1,9 @@
 import React, { useId } from "react";
-import PropTypes from 'prop-types';
 
-function Select({ options = [], label, className = "", ...props }, ref) {
+const Select = React.forwardRef(function Select(
+  { options = [], label, className = "", ...props },
+  ref
+) {
   const id = useId();
   return (
     <div className="w-full">
@@ -12,20 +14,15 @@ function Select({ options = [], label, className = "", ...props }, ref) {
         id={id}
         {...props}
         ref={ref}
-      ></select>
-      {options?.map((option) => (
-        <option key={option} value={option}>
-          {option}
-        </option>
-      ))}
+      >
+        {options?.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
     </div>
   );
-}
+});
 
-Select.propTypes = {
-  options: PropTypes.array,
-  label: PropTypes.string,
-  className: PropTypes.string,
-};
-
-export default React.forwardRef(Select);
+export default Select;

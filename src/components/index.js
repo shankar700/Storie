@@ -7,7 +7,11 @@ import PostCard from "./ui/PostCard";
 import Select from "./ui/Select";
 import Login from "./Login";
 import Button from "./ui/Button";
-import Input from "postcss/lib/input";
+import Input from "./ui/Input";
+import RTE from "./RTE";
+import SignUp from "./Signup";
+import PostForm from "./postFrom/PostForm";
+import ProtectedLayout from "./AuthLayout";
 
 export {
   Header,
@@ -20,4 +24,8 @@ export {
   Login,
   Button,
   Input,
+  RTE,
+  SignUp,
+  PostForm,
+  ProtectedLayout,
 };

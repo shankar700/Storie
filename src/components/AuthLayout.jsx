@@ -23,12 +23,5 @@ function ProtectedLayout({children, authentication = true}) {
   return loading? <h1>Loading...</h1>: <>{children}</>
 }
 
-ProtectedLayout.propTypes = {
-    children: PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.node),
-        PropTypes.node
-    ]),
-    authentication: PropTypes.boolean
-}
 
 export default ProtectedLayout
